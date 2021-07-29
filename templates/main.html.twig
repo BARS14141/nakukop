@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h3>Rest</h3>
+    {% for field, value in rest %}
+        <form method="post">
+            <input name="service" value="rest" style="display: none">
+            <input name="field-name" value="field" style="display: none">
+            <label for="rest-{{ field }}">{{ field }}</label>
+            <input id="rest-{{ field }}" name="value" value="{{ value }}">
+            <button>Установить значение</button>
+        </form>
+    {% endfor %}
+    <h3>GPRC</h3>
+    {% for field, value in grpc %}
+        <form method="post">
+            <input name="service" value="rest" style="display: none">
+            <input name="field-name" value="field" style="display: none">
+            <label for="rest-{{ field }}">{{ field }}</label>
+            <input id="rest-{{ field }}" name="value" value="{{ value }}">
+            <button>Установить значение</button>
+        </form>
+    {% endfor %}
+    <h3>HTTP</h3>
+    {% for field, value in http %}
+        <form method="post">
+            <input name="service" value="rest" style="display: none">
+            <input name="field-name" value="field" style="display: none">
+            <label for="rest-{{ field }}">{{ field }}</label>
+            <input id="rest-{{ field }}" name="value" value="{{ value }}">
+            <button>Установить значение</button>
+        </form>
+    {% endfor %}
+{% endblock %}

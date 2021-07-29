@@ -4,6 +4,24 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    services.rest.url: 'https://rest-example-url.com'
+    services.rest.token: 'example-token'
+    services.rest.fields:
+        - 'field1'
+        - 'field2'
+        - 'field3'
+
+    services.grpc.url: 'localhost:50051'
+    services.grpc.fields:
+        - 'field1'
+        - 'field2'
+        - 'field3'
+
+    services.http.url: 'https://http-example-url.com'
+    services.http.fields:
+        - 'field1'
+        - 'field2'
+        - 'field3'
 
 services:
     # default configuration for services in *this* file
@@ -23,3 +41,20 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\Services\Rest:
+        arguments:
+            $url: '%services.rest.url%'
+            $client: '@rest.client'
+            $settings: '%services.rest.fields%'
+
+    App\Service\Services\GRPC:
+        arguments:
+            $url: '%services.grpc.url%'
+            $settings: '%services.grpc.fields%'
+
+    App\Service\Services\Http:
+        arguments:
+            $url: '%services.http.url%'
+            $client: '@http_client'
+            $settings: '%services.rest.fields%'
